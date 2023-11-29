@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="3.0" xmlns="https://jakarta.ee/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd">
+    <!-- Define Persistence Unit -->
+    <persistence-unit name="microservice" transaction-type="JTA">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <jta-data-source>java:app/microservice</jta-data-source>
+        <class>io.luismesa.microservice.resources.desks.entity.DesksEntity</class>
+        <class>io.luismesa.microservice.resources.floors.entity.FloorsEntity</class>
+        <class>io.luismesa.microservice.resources.buildings.entity.BuildingsEntity</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        <shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
+        <validation-mode>AUTO</validation-mode>
+        <properties>
+            <!--<property name="jakarta.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>-->
+            <property name="eclipselink.cache.coordination.protocol" value="fish.payara.persistence.eclipselink.cache.coordination.HazelcastPublishingTransportManager"/>
+            <property name="eclipselink.cache.coordination.channel" value="MicroservicePUChannel"/>
+            <!--<property name="eclipselink.target-database" value="org.eclipse.persistence.platform.database.Oracle21Platform"/>-->
+            <!--<property name="eclipselink.target-database" value="Oracle21"/>-->
+            <!--<property name="eclipselink.target-server" value="Glassfish"/>-->
+            <!--<property name="eclipselink.target-server.enforce" value="true"/>-->
+            <property name="eclipselink.orm.throw.exceptions" value="true"/>
+            <property name="eclipselink.logging.level" value="FINEST"/>
+            <property name="eclipselink.logging.parameters" value="true"/>
+            <property name="eclipselink.logging.timestamp" value="true"/>
+            <property name="eclipselink.logging.session" value="true"/>
+            <property name="eclipselink.logging.thread" value="true"/>
+            <property name="eclipselink.logging.logger" value="ServerLogger"/>
+            <property name="eclipselink.logging.exceptions" value="true"/>
+            <property name="eclipselink.ddl.table-creation-suffix" value=";"/>
+            <property name="eclipselink.jdbc.batch-writing" value="JDBC"/>
+            <property name="eclipselink.jdbc.batch-writing.size" value="1000"/>
+            <property name="eclipselink.exclude-eclipselink-orm" value="true"/>
+            <property name="eclipselink.tuning" value="io.luismesa.microservice.EnvironmentDatabaseSessionTuner"/>
+            <property name="jakarta.persistence.lock.timeout" value="100"/>
+            <property name="jakarta.persistence.query.timeout" value="100"/>
+            <property name="jakarta.persistence.schema-generation.database.action" value="none"/>
+            <property name="jakarta.persistence.schema-generation.create-source" value="script"/>
+            <property name="jakarta.persistence.schema-generation.create-script-source" value="META-INF/mssql/create.sql"/>
+            <property name="jakarta.persistence.schema-generation.drop-source" value="script"/>
+            <property name="jakarta.persistence.schema-generation.drop-script-source" value="META-INF/mssql/drop.sql"/>
+            <!--<property name="jakarta.persistence.schema-generation.scripts.action" value="drop-and-create"/>
+            <property name="jakarta.persistence.schema-generation.scripts.create-target" value="./create-generated.sql"/>
+            <property name="jakarta.persistence.schema-generation.scripts.drop-target" value="./drop-generated.sql"/>-->
+            <property name="jakarta.persistence.sql-load-script-source" value="META-INF/mssql/load.sql"/>
+        </properties>
+    </persistence-unit>
+</persistence>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.3.xsd">
+    <!--
+    Disputed CVE https://github.com/FasterXML/jackson-databind/issues/3972
+    Cyclic data structures are a problem in any library and not a vulnerability if nobody, outside of the designer of the application using Jackson, can trigger a stack overflow
+    -->
+    <suppress>
+        <notes><![CDATA[ file name: jackson-databind-2.15.0.jar - False positive, disputed CVE]]></notes>
+        <packageUrl regex="true">^pkg:maven/com\.fasterxml\.jackson\.core/jackson\-databind@.*$</packageUrl>
+        <cpe>cpe:/a:fasterxml:jackson-databind</cpe>
+        <cpe>cpe:/a:fasterxml:jackson-modules-java8</cpe>
+        <cve>CVE-2023-35116</cve>
+    </suppress>
+</suppressions>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE resources PUBLIC "-//Payara.fish//DTD Payara Server 4 Resource Definitions//EN" "http://docs.payara.fish/schemas/payara-resources_1_7.dtd">
+<!--https://github.com/payara/Payara/blob/master/appserver/connectors/descriptors/src/main/resources/glassfish/lib/dtds/payara-resources_1_7.dtd-->
+<resources>
+    <jdbc-connection-pool allow-non-component-callers="false"
+                          associate-with-thread="false"
+                          connection-creation-retry-attempts="0"
+                          connection-creation-retry-interval-in-seconds="10"
+                          connection-leak-reclaim="false"
+                          connection-leak-timeout-in-seconds="0"
+                          connection-validation-method="auto-commit"
+                          datasource-classname="com.microsoft.sqlserver.jdbc.SQLServerXADataSource"
+                          fail-all-connections="false"
+                          idle-timeout-in-seconds="300"
+                          is-connection-validation-required="false"
+                          is-isolation-level-guaranteed="true"
+                          lazy-connection-association="false"
+                          lazy-connection-enlistment="false"
+                          match-connections="false"
+                          max-connection-usage-count="0"
+                          max-pool-size="64"
+                          max-wait-time-in-millis="60000"
+                          name="mssql-thin_MICROSERVICE_Pool"
+                          non-transactional-connections="false"
+                          pool-resize-quantity="8"
+                          res-type="javax.sql.DataSource"
+                          statement-timeout-in-seconds="-1"
+                          steady-pool-size="8"
+                          validate-atmost-once-period-in-seconds="0"
+                          wrap-jdbc-objects="false">
+        <property name="driverClass" value="${MPCONFIG=jakarta.persistence.jdbc.driver:com.microsoft.sqlserver.jdbc.SQLServerDriver}"></property>
+        <property name="url" value="${MPCONFIG=jakarta.persistence.jdbc.url:jdbc:sqlserver://host.docker.internal:1433;databaseName=master;encrypt=true;trustServerCertificate=true}"/>
+        <property name="user" value="${MPCONFIG=jakarta.persistence.jdbc.user:MICROSERVICE_PROXY1}"/>
+        <property name="password" value="${MPCONFIG=jakarta.persistence.jdbc.password:p455w0Rd}"/>
+    </jdbc-connection-pool>
+    <jdbc-resource enabled="true" jndi-name="java:app/microservice" object-type="user" pool-name="mssql-thin_MICROSERVICE_Pool"/>
+</resources>
