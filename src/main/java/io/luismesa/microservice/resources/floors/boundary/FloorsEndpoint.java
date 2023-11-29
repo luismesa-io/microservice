@@ -68,7 +68,7 @@ public class FloorsEndpoint {
     }
 
     @PUT
-    @CacheRemove
+    @CacheRemove(cacheName = "floors")
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void edit(@CacheKey @PathParam("id") String id, FloorsEntity entity) {
@@ -77,7 +77,7 @@ public class FloorsEndpoint {
     }
 
     @DELETE
-    @CacheRemove
+    @CacheRemove(cacheName = "floors")
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void remove(@CacheKey @PathParam("id") String id) {
@@ -86,7 +86,7 @@ public class FloorsEndpoint {
 
     @GET
     @Compress
-    @CacheResult
+    @CacheResult(cacheName = "floors")
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public FloorsEntity find(@CacheKey @PathParam("id") String id) {

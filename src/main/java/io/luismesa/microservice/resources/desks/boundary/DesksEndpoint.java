@@ -64,7 +64,7 @@ public class DesksEndpoint {
     }
 
     @PUT
-    @CacheRemove
+    @CacheRemove(cacheName = "desks")
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void edit(@CacheKey @PathParam("id") String id, DesksEntity entity) {
@@ -73,7 +73,7 @@ public class DesksEndpoint {
     }
 
     @DELETE
-    @CacheRemove
+    @CacheRemove(cacheName = "desks")
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void remove(@CacheKey @PathParam("id") String id) {
@@ -82,7 +82,7 @@ public class DesksEndpoint {
 
     @GET
     @Compress
-    @CacheResult
+    @CacheResult(cacheName = "desks")
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public DesksEntity find(@CacheKey @PathParam("id") String id) {
