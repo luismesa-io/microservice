@@ -4,7 +4,8 @@ A sample project to learn about REST APIs (JAX-RS), database persistence (JPA), 
 You can run it in any JakartaEE server, such as Payara or OpenLiberty and then test it by going to http://localhost:8080/resources/buildings
 
 To update you can use something like (the version must be the current one to avoid OptimisticLockException, each update increments the version):
-    ```
+
+    ```javascript
     fetch('http://localhost:8080/microservice/resources/buildings/00000000-0000-0000-0000-000000000000', {
         method: "PUT",
         mode: "cors", // no-cors, *cors, same-origin
